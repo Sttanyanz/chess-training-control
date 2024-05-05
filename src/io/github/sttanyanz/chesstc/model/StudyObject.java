@@ -30,6 +30,6 @@ public enum StudyObject {
     }
 
     private boolean isTimeSpentNegative() {
-        return timeSpent >= 0;
+        return timeSpent < 0;
     }
 }
