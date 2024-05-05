@@ -17,6 +17,25 @@ public class SetTimeController {
 
     }
 
+    public void setTime (StudyObject studyObject, int time)
+            throws NegativeInputTimeException, NegativeTimeSpentException {
+
+        if (isInputTimeNegative(time)) {
+            throw new NegativeInputTimeException();
+        }
+
+        studyObject.setTime(time);
+
+    }
+
+    public void reset () throws NegativeTimeSpentException {
+
+        for (StudyObject studyObject : StudyObject.values()) {
+            studyObject.setTime(0);
+        }
+
+    }
+
     private boolean isInputTimeNegative(int time) {
         return time < 0;
     }
