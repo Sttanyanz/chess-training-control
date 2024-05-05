@@ -1,5 +1,7 @@
 package io.github.sttanyanz.chesstc.model;
 
+import io.github.sttanyanz.chesstc.model.exceptions.NegativeTimeSpentException;
+
 public enum StudyObject {
     playing, analysis, tactics, theory;
 
@@ -13,11 +15,21 @@ public enum StudyObject {
         return timeSpent;
     }
 
-    public void addTime(int time) {
+    public void addTime(int time) throws NegativeTimeSpentException {
         timeSpent += time;
+        if (isTimeSpentNegative()) {
+            throw new NegativeTimeSpentException();
+        }
     }
 
-    public void reset() {
-        timeSpent = 0;
+    public void setTime(int time) throws NegativeTimeSpentException {
+        timeSpent = time;
+        if (isTimeSpentNegative()) {
+            throw new NegativeTimeSpentException();
+        }
+    }
+
+    private boolean isTimeSpentNegative() {
+        return timeSpent >= 0;
     }
 }
