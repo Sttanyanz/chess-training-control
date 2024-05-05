@@ -16,17 +16,23 @@ public enum StudyObject {
     }
 
     public void addTime(int time) throws NegativeTimeSpentException {
+
         timeSpent += time;
+
         if (isTimeSpentNegative()) {
             throw new NegativeTimeSpentException();
         }
+
     }
 
     public void setTime(int time) throws NegativeTimeSpentException {
+
         timeSpent = time;
+
         if (isTimeSpentNegative()) {
             throw new NegativeTimeSpentException();
         }
+
     }
 
     private boolean isTimeSpentNegative() {

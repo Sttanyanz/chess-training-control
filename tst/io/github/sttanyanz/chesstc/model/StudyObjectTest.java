@@ -9,6 +9,7 @@ class StudyObjectTest {
 
     @Test
     void addTime() throws NegativeTimeSpentException {
+
         final int input1TimeSpent = 120;
         final int input2TimeSpent = 130;
         final int expectedTimeSpent = input1TimeSpent + input2TimeSpent;
@@ -18,10 +19,12 @@ class StudyObjectTest {
         final int actualTimeSpent = StudyObject.theory.getTimeSpent();
 
         assertEquals(expectedTimeSpent, actualTimeSpent);
+
     }
 
     @Test
     void setTime() throws NegativeTimeSpentException {
+
         final int input1TimeSpent = 120;
         final int input2TimeSpent = 130;
         final int expectedTimeSpent = input2TimeSpent;
@@ -31,20 +34,24 @@ class StudyObjectTest {
         final int actualTimeSpent = StudyObject.playing.getTimeSpent();
 
         assertEquals(expectedTimeSpent, actualTimeSpent);
+
     }
 
     @Test
     void testSetNegativeTime() throws NegativeTimeSpentException {
+
         final int inputTimeSpent = -120;
 
         try {
             StudyObject.tactics.setTime(inputTimeSpent);
             fail();
         } catch (final NegativeTimeSpentException e) {}
+
     }
 
     @Test
     void testReduceTimeToNegative() throws NegativeTimeSpentException {
+
         final int input1TimeSpent = 30;
         final int input2TimeSpent = -213;
 
