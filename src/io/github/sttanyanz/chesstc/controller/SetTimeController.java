@@ -4,7 +4,7 @@ import io.github.sttanyanz.chesstc.model.StudyObject;
 import io.github.sttanyanz.chesstc.model.exceptions.NegativeInputTimeException;
 import io.github.sttanyanz.chesstc.model.exceptions.NegativeTimeSpentException;
 
-public class SpendTimeController {
+public class SetTimeController {
 
     public void spendTime (StudyObject studyObject, int time)
             throws NegativeInputTimeException, NegativeTimeSpentException {

@@ -10,13 +10,16 @@ BackgroundColor #403F49/#604F59
 skinparam class {
 BackgroundColor #282C34/#483C44
 }
-skinparam groupInheritance 2
+skinparam groupInheritance 3
 
 package chesstc {
     package model {
         package exceptions {
             class AbstractCTCException
             class NegativeTimeSpentException
+            class NegativeInputTimeException
+
+            AbstractCTCException <|-- NegativeInputTimeException
             AbstractCTCException <|-- NegativeTimeSpentException
         }
 
@@ -30,13 +33,9 @@ package chesstc {
     }
 
     package controller {
-        class SpendTimeController {
-            spendTime(studyObject : StudyObject, time : int) : void
-        }
         class SetTimeController {
+            spendTime(studyObject : StudyObject, time : int) : void
             setTime(studyObject : StudyObject, time : int) : void
-        }
-        class ResetTimeController {
             reset() : void
         }
     }

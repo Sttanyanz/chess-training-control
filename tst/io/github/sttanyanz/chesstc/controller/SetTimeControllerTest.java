@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SpendTimeControllerTest {
+class SetTimeControllerTest {
 
     @Test
     void spendTime()
@@ -15,7 +15,7 @@ class SpendTimeControllerTest {
 
         final int inputTimeSpent = 120;
         final int expectedTimeSpent = inputTimeSpent;
-        final SpendTimeController inputController = new SpendTimeController();
+        final SetTimeController inputController = new SetTimeController();
 
         inputController.spendTime(StudyObject.playing, inputTimeSpent);
         final int actualTimeSpent = StudyObject.playing.getTimeSpent();
@@ -29,7 +29,7 @@ class SpendTimeControllerTest {
             throws NegativeInputTimeException, NegativeTimeSpentException {
 
         final int inputTimeSpent = -120;
-        final SpendTimeController inputController = new SpendTimeController();
+        final SetTimeController inputController = new SetTimeController();
 
         try {
             inputController.spendTime(StudyObject.theory, inputTimeSpent);
