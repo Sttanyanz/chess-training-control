@@ -15,20 +15,32 @@ skinparam groupInheritance 2
 package chesstc {
     package model {
         package exceptions {
+            class AbstractCTCException
             class NegativeTimeSpentException
+            AbstractCTCException <|-- NegativeTimeSpentException
         }
 
         enum StudyObject {
             getTimeSpent() : int
             addTime(time : int) : void
+            setTime(time : int) : void
+        }
+
+        class Session {
+            getStudyObjects() : Set<StudyObject>
             reset() : void
         }
+
+        Session [1] -- [*] StudyObject
 
     }
 
     package controller {
         class SpendTimeController {
-            spendTime(studyObject : StudyObject) : void
+            spendTime(studyObject : StudyObject, time : int) : void
+        }
+        class SetTimeController {
+            setTime(studyObject : StudyObject, time : int) : void
         }
         class ResetTimeController {
             reset() : void
@@ -39,6 +51,7 @@ package chesstc {
         class ConsoleView {
             showObjects() : void
             spendTime() : void
+            setTime() : void
             reset() : void
         }
     }
