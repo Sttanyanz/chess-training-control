@@ -5,10 +5,12 @@ import io.github.sttanyanz.chesstc.model.exceptions.NegativeTimeSpentException;
 public enum StudyObject {
     playing, analysis, tactics, theory;
 
+    public static final int DEFAULT_TIME = 0;
+
     private int timeSpent;
 
     StudyObject() {
-        this.timeSpent = 0;
+        this.timeSpent = DEFAULT_TIME;
     }
 
     public int getTimeSpent() {

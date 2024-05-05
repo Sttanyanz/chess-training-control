@@ -30,8 +30,8 @@ public class SetTimeController {
 
     public void reset () throws NegativeTimeSpentException {
 
-        for (StudyObject studyObject : StudyObject.values()) {
-            studyObject.setTime(0);
+        for ( StudyObject studyObject : StudyObject.values() ) {
+            studyObject.setTime( StudyObject.DEFAULT_TIME );
         }
 
     }
