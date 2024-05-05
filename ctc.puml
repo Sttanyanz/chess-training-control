@@ -26,12 +26,6 @@ package chesstc {
             setTime(time : int) : void
         }
 
-        class Session {
-            getStudyObjects() : Set<StudyObject>
-            reset() : void
-        }
-
-        Session [1] -- [*] StudyObject
 
     }
 
