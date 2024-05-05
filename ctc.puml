@@ -1,0 +1,47 @@
+@startuml
+skinparam defaultFontSize 10
+skinparam BackgroundColor DimGray
+skinparam ClassAttributeFontColor LightGreen
+skinparam PackageFontColor coral
+skinparam ClassFontColor coral
+skinparam package {
+BackgroundColor #403F49/#604F59
+}
+skinparam class {
+BackgroundColor #282C34/#483C44
+}
+skinparam groupInheritance 2
+
+package chesstc {
+    package model {
+        package exceptions {
+            class NegativeTimeSpentException
+        }
+
+        enum StudyObject {
+            getTimeSpent() : int
+            addTime(time : int) : void
+            reset() : void
+        }
+
+    }
+
+    package controller {
+        class SpendTimeController {
+            spendTime(studyObject : StudyObject) : void
+        }
+        class ResetTimeController {
+            reset() : void
+        }
+    }
+
+    package view {
+        class ConsoleView {
+            showObjects() : void
+            spendTime() : void
+            reset() : void
+        }
+    }
+}
+
+@enduml
