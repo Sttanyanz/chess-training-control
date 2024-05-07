@@ -24,9 +24,15 @@ package chesstc {
         }
 
         enum StudyObject {
+            getStatus() : GoalStatus
             getTimeSpent() : int
+            getPercentage() : float
             addTime(time : int) : void
             setTime(time : int) : void
+            <u>getTotalTimeSpent() : int </u>
+        }
+
+        enum GoalStatus {
         }
 
 
