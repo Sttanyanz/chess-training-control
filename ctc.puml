@@ -23,18 +23,19 @@ package chesstc {
             AbstractCTCException <|-- NegativeTimeSpentException
         }
 
-        enum StudyObject {
-            getStatus() : GoalStatus
+        class StudyObject {
             getTimeSpent() : int
-            getPercentage() : float
             addTime(time : int) : void
             setTime(time : int) : void
-            <u>getTotalTimeSpent() : int </u>
         }
 
-        enum GoalStatus {
+        class Session {
+            getObjects() : StudyObject[]
+            getObject(studyObjectID : int) : StudyObject
+            getPercentage(studyObjectID : int) : float
+            getTotalTimeSpent() : int
+            reset() : void
         }
-
 
     }
 
