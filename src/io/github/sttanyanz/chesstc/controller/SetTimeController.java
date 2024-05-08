@@ -1,5 +1,6 @@
 package io.github.sttanyanz.chesstc.controller;
 
+import io.github.sttanyanz.chesstc.model.Session;
 import io.github.sttanyanz.chesstc.model.StudyObject;
 import io.github.sttanyanz.chesstc.model.exceptions.NegativeInputTimeException;
 import io.github.sttanyanz.chesstc.model.exceptions.NegativeTimeSpentException;
@@ -28,9 +29,9 @@ public class SetTimeController {
 
     }
 
-    public void reset () throws NegativeTimeSpentException {
+    public void reset (Session session) throws NegativeTimeSpentException {
 
-        for ( StudyObject studyObject : StudyObject.values() ) {
+        for ( StudyObject studyObject : session.getObjects() ) {
             studyObject.setTime( StudyObject.DEFAULT_TIME );
         }
 
