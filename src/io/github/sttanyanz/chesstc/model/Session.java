@@ -58,11 +58,10 @@ public class Session {
         if (totalTimeSpendIsZero())
             throw new GetPercentageWhenTotalTimeIsZeroException();
 
-        if (indexOutOfBounds(studyObjectID))
-            throw new StudyObjectIndexOutOfBoundsException();
+        final StudyObject studyObject = getObject(studyObjectID);
 
         float studyObjectTimeSpent =
-                (float) studyObjects[studyObjectID].getTimeSpent();
+                (float) studyObject.getTimeSpent();
 
         return studyObjectTimeSpent / getTotalTimeSpent() * 100;
 
