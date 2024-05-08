@@ -4,6 +4,7 @@ import io.github.sttanyanz.chesstc.model.Session;
 import io.github.sttanyanz.chesstc.model.StudyObject;
 import io.github.sttanyanz.chesstc.model.exceptions.NegativeInputTimeException;
 import io.github.sttanyanz.chesstc.model.exceptions.NegativeTimeSpentException;
+import io.github.sttanyanz.chesstc.model.exceptions.StudyObjectIndexOutOfBoundsException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +13,8 @@ class SetTimeControllerTest {
 
     @Test
     void spendTime()
-            throws NegativeTimeSpentException, NegativeInputTimeException {
+            throws NegativeTimeSpentException, NegativeInputTimeException,
+            StudyObjectIndexOutOfBoundsException {
 
         final int inputTimeSpent = 120;
         final int expectedTimeSpent = inputTimeSpent * 2;
@@ -33,7 +35,8 @@ class SetTimeControllerTest {
 
     @Test
     void testSpendNegativeTime()
-            throws NegativeTimeSpentException {
+            throws NegativeTimeSpentException,
+            StudyObjectIndexOutOfBoundsException {
 
         final int inputTimeSpent = -120;
         
@@ -51,7 +54,8 @@ class SetTimeControllerTest {
 
     @Test
     void setTime()
-            throws NegativeTimeSpentException, NegativeInputTimeException {
+            throws NegativeTimeSpentException, NegativeInputTimeException,
+            StudyObjectIndexOutOfBoundsException {
 
         final int inputTimeSpent = 120;
         final int expectedTimeSpent = inputTimeSpent;
@@ -72,7 +76,8 @@ class SetTimeControllerTest {
 
     @Test
     void testSetNegativeTime()
-            throws NegativeTimeSpentException {
+            throws NegativeTimeSpentException,
+            StudyObjectIndexOutOfBoundsException {
 
         final int inputTimeSpent = -120;
         
@@ -90,7 +95,8 @@ class SetTimeControllerTest {
 
     @Test
     void reset()
-            throws NegativeTimeSpentException, NegativeInputTimeException {
+            throws NegativeTimeSpentException, NegativeInputTimeException,
+            StudyObjectIndexOutOfBoundsException {
 
         final int inputTimeSpent = 120;
         final int expectedTimeSpent = StudyObject.DEFAULT_TIME;

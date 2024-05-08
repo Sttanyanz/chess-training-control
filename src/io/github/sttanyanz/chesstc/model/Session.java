@@ -1,6 +1,8 @@
 package io.github.sttanyanz.chesstc.model;
 
+import io.github.sttanyanz.chesstc.model.exceptions.GetPercentageWhenTotalTimeIsZeroException;
 import io.github.sttanyanz.chesstc.model.exceptions.NegativeTimeSpentException;
+import io.github.sttanyanz.chesstc.model.exceptions.StudyObjectIndexOutOfBoundsException;
 
 public class Session {
     public static final int PLAYING = 0;
@@ -27,8 +29,14 @@ public class Session {
         return studyObjects;
     }
 
-    public StudyObject getObject(int studyObjectID) {
+    public StudyObject getObject(int studyObjectID)
+            throws StudyObjectIndexOutOfBoundsException {
+
+        if (indexOutOfBounds(studyObjectID))
+            throw new StudyObjectIndexOutOfBoundsException();
+
         return studyObjects[studyObjectID];
+
     }
 
     public int getTotalTimeSpent() {
@@ -43,7 +51,15 @@ public class Session {
         return totalTimeSpent;
     }
 
-    public float getPercentage(int studyObjectID) {
+    public float getPercentage(int studyObjectID)
+            throws GetPercentageWhenTotalTimeIsZeroException,
+            StudyObjectIndexOutOfBoundsException {
+
+        if (totalTimeSpendIsZero())
+            throw new GetPercentageWhenTotalTimeIsZeroException();
+
+        if (indexOutOfBounds(studyObjectID))
+            throw new StudyObjectIndexOutOfBoundsException();
 
         float studyObjectTimeSpent =
                 (float) studyObjects[studyObjectID].getTimeSpent();
@@ -60,5 +76,13 @@ public class Session {
 
         }
 
+    }
+
+    private boolean totalTimeSpendIsZero() {
+        return getTotalTimeSpent() == 0;
+    }
+
+    private boolean indexOutOfBounds(int index) {
+        return ( (index >= OBJECT_COUNT) || (index < 0) );
     }
 }

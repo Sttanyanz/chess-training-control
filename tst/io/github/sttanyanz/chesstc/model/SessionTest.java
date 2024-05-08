@@ -1,6 +1,8 @@
 package io.github.sttanyanz.chesstc.model;
 
+import io.github.sttanyanz.chesstc.model.exceptions.GetPercentageWhenTotalTimeIsZeroException;
 import io.github.sttanyanz.chesstc.model.exceptions.NegativeTimeSpentException;
+import io.github.sttanyanz.chesstc.model.exceptions.StudyObjectIndexOutOfBoundsException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,7 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class SessionTest {
 
     @Test
-    void getTotalTimeSpent() throws NegativeTimeSpentException {
+    void getTotalTimeSpent() throws NegativeTimeSpentException,
+            StudyObjectIndexOutOfBoundsException {
 
         final int input1TimeSpent = 137;
         final int input2TimeSpent = 24;
@@ -29,7 +32,9 @@ class SessionTest {
     }
 
     @Test
-    void getPercentage() throws NegativeTimeSpentException {
+    void getPercentage() throws NegativeTimeSpentException,
+            GetPercentageWhenTotalTimeIsZeroException,
+            StudyObjectIndexOutOfBoundsException {
 
         final int input1TimeSpent = 34;
         final int input2TimeSpent = 2;
@@ -50,7 +55,8 @@ class SessionTest {
     }
 
     @Test
-    void reset() throws NegativeTimeSpentException {
+    void reset() throws NegativeTimeSpentException,
+            StudyObjectIndexOutOfBoundsException {
 
         final int input1TimeSpent = 137;
         final int input2TimeSpent = 24;

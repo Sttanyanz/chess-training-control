@@ -1,6 +1,7 @@
 package io.github.sttanyanz.chesstc.model;
 
 import io.github.sttanyanz.chesstc.model.exceptions.NegativeTimeSpentException;
+import io.github.sttanyanz.chesstc.model.exceptions.StudyObjectIndexOutOfBoundsException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,7 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class StudyObjectTest {
 
     @Test
-    void addTime() throws NegativeTimeSpentException {
+    void addTime() throws NegativeTimeSpentException,
+            StudyObjectIndexOutOfBoundsException {
 
         final int input1TimeSpent = 120;
         final int input2TimeSpent = 130;
@@ -27,7 +29,8 @@ class StudyObjectTest {
     }
 
     @Test
-    void setTime() throws NegativeTimeSpentException {
+    void setTime() throws NegativeTimeSpentException,
+            StudyObjectIndexOutOfBoundsException {
 
         final int input1TimeSpent = 120;
         final int input2TimeSpent = 130;
@@ -46,7 +49,8 @@ class StudyObjectTest {
     }
 
     @Test
-    void testSetNegativeTime() throws NegativeTimeSpentException {
+    void testSetNegativeTime() throws NegativeTimeSpentException,
+            StudyObjectIndexOutOfBoundsException {
 
         final int inputTimeSpent = -120;
 
@@ -61,7 +65,8 @@ class StudyObjectTest {
     }
 
     @Test
-    void testReduceTimeToNegative() throws NegativeTimeSpentException {
+    void testReduceTimeToNegative() throws NegativeTimeSpentException,
+            StudyObjectIndexOutOfBoundsException {
 
         final int input1TimeSpent = 30;
         final int input2TimeSpent = -213;
