@@ -82,4 +82,28 @@ class StudyObjectTest {
         } catch (final NegativeTimeSpentException e) {}
     }
 
+    @Test
+    void getNecessityThreshold() throws StudyObjectIndexOutOfBoundsException {
+        final int expectedThreshold = 10;
+
+        final Session session = new Session();
+        final int actualThreshold =
+                session.getObject(Session.TACTICS).getNecessityThreshold();
+
+        assertEquals(expectedThreshold, actualThreshold);
+
+    }
+
+    @Test
+    void getSufficiencyThreshold() throws StudyObjectIndexOutOfBoundsException {
+        final int expectedThreshold = 75;
+
+        final Session session = new Session();
+        final int actualThreshold =
+                session.getObject(Session.PLAYING).getSufficiencyThreshold();
+
+        assertEquals(expectedThreshold, actualThreshold);
+
+    }
+
 }
