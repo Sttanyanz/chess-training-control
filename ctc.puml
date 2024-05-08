@@ -10,7 +10,7 @@ BackgroundColor #403F49/#604F59
 skinparam class {
 BackgroundColor #282C34/#483C44
 }
-skinparam groupInheritance 3
+skinparam groupInheritance 4
 
 package chesstc {
     package model {
@@ -18,9 +18,13 @@ package chesstc {
             class AbstractCTCException
             class NegativeTimeSpentException
             class NegativeInputTimeException
+            class GetPercentageWhenTotalTimeIsZeroException
+            class StudyObjectIndexOutOfBoundsException
 
             AbstractCTCException <|-- NegativeInputTimeException
             AbstractCTCException <|-- NegativeTimeSpentException
+            AbstractCTCException <|-- GetPercentageWhenTotalTimeIsZeroException
+            AbstractCTCException <|-- StudyObjectIndexOutOfBoundsException
         }
 
         class StudyObject {
