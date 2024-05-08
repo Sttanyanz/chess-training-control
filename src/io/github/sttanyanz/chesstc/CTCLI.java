@@ -13,6 +13,10 @@ public class CTCLI {
 
         consoleView.show(session);
 
+        while (consoleView.consoleMenu(session)){
+            consoleView.show(session);
+        }
+
     }
 
 }

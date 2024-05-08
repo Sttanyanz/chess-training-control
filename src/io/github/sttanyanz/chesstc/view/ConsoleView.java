@@ -4,7 +4,14 @@ import io.github.sttanyanz.chesstc.model.Session;
 import io.github.sttanyanz.chesstc.model.StudyObject;
 import io.github.sttanyanz.chesstc.model.exceptions.StudyObjectIndexOutOfBoundsException;
 
+import java.util.Scanner;
+
 public class ConsoleView {
+
+    private final static int SPEND_TIME = 1;
+    private final static int SET_TIME = 2;
+    private final static int RESET = 3;
+    private final static int EXIT = 0;
 
     public void show(final Session session){
 
@@ -64,6 +71,44 @@ public class ConsoleView {
         }
 
         return objectName;
+
+    }
+
+    public boolean consoleMenu(final Session session) {
+
+        showMenuOptions();
+
+        final int action = askAction();
+
+        switch (action) {
+            case SPEND_TIME -> spendTime(session);
+            case SET_TIME -> setTime(session);
+            case RESET -> reset(session);
+            case EXIT -> {
+                return false;
+            }
+            default -> System.out.println("Invalid action");
+        }
+
+        return true;
+
+    }
+
+    private int askAction() {
+        final Scanner in = new Scanner(System.in);
+        return in.nextInt();
+    }
+
+    private void showMenuOptions() {
+
+        System.out.println("Chess Training Control Menu");
+        System.out.println();
+        System.out.println();
+        System.out.println("    1 - Spend time on chosen study area");
+        System.out.println("    2 - Set time for chosen study area");
+        System.out.println("    3 - Reset study time");
+        System.out.println("    0 - Exit");
+        System.out.println();
 
     }
 
