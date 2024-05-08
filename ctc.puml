@@ -54,6 +54,7 @@ package chesstc {
     package view {
         class ConsoleView {
             show(session : Session) : void
+            consoleMenu((session : Session) : void
             spendTime(session : Session) : void
             setTime(session : Session) : void
             reset(session : Session) : void
