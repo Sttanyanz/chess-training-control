@@ -76,4 +76,46 @@ class SessionTest {
         assertEquals(expectedTimeSpent, actualTimeSpent);
 
     }
+
+    @Test
+    void testGetPercentageWhenTotalTimeSpentIsZero()
+            throws StudyObjectIndexOutOfBoundsException {
+
+        final Session session = new Session();
+
+        try {
+            session.getPercentage(Session.ANALYSIS);
+            fail();
+        } catch (final GetPercentageWhenTotalTimeIsZeroException e) {}
+
+    }
+
+    @Test
+    void testGetObjectWhenIndexIsLessThanZero(){
+
+        final int inputIndex = -5;
+
+        final Session session = new Session();
+
+        try {
+            session.getObject(inputIndex);
+            fail();
+        } catch (final StudyObjectIndexOutOfBoundsException e) {}
+
+    }
+
+    @Test
+    void testGetObjectWhenIndexIsMoreOrEqualThanObjectCount(){
+
+        final int inputIndex = 32;
+
+        final Session session = new Session();
+
+        try {
+            session.getObject(inputIndex);
+            fail();
+        } catch (final StudyObjectIndexOutOfBoundsException e) {}
+
+    }
+
 }
