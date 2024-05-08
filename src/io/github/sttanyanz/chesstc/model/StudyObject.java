@@ -46,4 +46,11 @@ public class StudyObject {
     }
 
 
+    public int getNecessityThreshold() {
+        return necessityThreshold;
+    }
+
+    public int getSufficiencyThreshold() {
+        return sufficiencyThreshold;
+    }
 }
