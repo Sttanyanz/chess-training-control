@@ -28,36 +28,36 @@ package chesstc {
         }
 
         class StudyObject {
-            getTimeSpent() : int
-            addTime(time : int) : void
-            setTime(time : int) : void
+            + getTimeSpent() : int
+            + addTime(time : int) : void
+            + setTime(time : int) : void
         }
 
         class Session {
-            getObjects() : StudyObject[]
-            getObject(studyObjectID : int) : StudyObject
-            getPercentage(studyObjectID : int) : float
-            getTotalTimeSpent() : int
-            reset() : void
+            + getObjects() : StudyObject[]
+            + getObject(studyObjectID : int) : StudyObject
+            + getPercentage(studyObjectID : int) : float
+            + getTotalTimeSpent() : int
+            + reset() : void
         }
 
     }
 
     package controller {
         class SetTimeController {
-            spendTime(studyObject : StudyObject, time : int) : void
-            setTime(studyObject : StudyObject, time : int) : void
-            reset() : void
+            + spendTime(studyObject : StudyObject, time : int) : void
+            + setTime(studyObject : StudyObject, time : int) : void
+            + reset() : void
         }
     }
 
     package view {
         class ConsoleView {
-            show(session : Session) : void
-            consoleMenu((session : Session) : void
-            spendTime(session : Session) : void
-            setTime(session : Session) : void
-            reset(session : Session) : void
+            + show(session : Session) : void
+            + consoleMenu((session : Session) : void
+            - spendTime(session : Session) : void
+            - setTime(session : Session) : void
+            - reset(session : Session) : void
         }
     }
 }
