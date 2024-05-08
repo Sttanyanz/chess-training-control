@@ -18,9 +18,9 @@ public class Session {
 
         studyObjects = new StudyObject[OBJECT_COUNT];
 
-        studyObjects[PLAYING] = new StudyObject(30, 75);
-        studyObjects[ANALYSIS] = new StudyObject(5, 15);
-        studyObjects[TACTICS] = new StudyObject(10, 40);
+        studyObjects[PLAYING] = new StudyObject(25, 70);
+        studyObjects[ANALYSIS] = new StudyObject(10, 25);
+        studyObjects[TACTICS] = new StudyObject(10, 35);
         studyObjects[THEORY] = new StudyObject(10, 25);
 
     }
