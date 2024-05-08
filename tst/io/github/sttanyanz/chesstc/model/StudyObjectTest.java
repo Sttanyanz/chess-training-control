@@ -14,9 +14,13 @@ class StudyObjectTest {
         final int input2TimeSpent = 130;
         final int expectedTimeSpent = input1TimeSpent + input2TimeSpent;
 
-        StudyObject.theory.addTime(input1TimeSpent);
-        StudyObject.theory.addTime(input2TimeSpent);
-        final int actualTimeSpent = StudyObject.theory.getTimeSpent();
+        final Session session = new Session();
+        final StudyObject theory = session.getObject(Session.THEORY);
+
+        theory.addTime(input1TimeSpent);
+        theory.addTime(input2TimeSpent);
+
+        final int actualTimeSpent = theory.getTimeSpent();
 
         assertEquals(expectedTimeSpent, actualTimeSpent);
 
@@ -29,9 +33,13 @@ class StudyObjectTest {
         final int input2TimeSpent = 130;
         final int expectedTimeSpent = input2TimeSpent;
 
-        StudyObject.playing.setTime(input1TimeSpent);
-        StudyObject.playing.setTime(input2TimeSpent);
-        final int actualTimeSpent = StudyObject.playing.getTimeSpent();
+        final Session session = new Session();
+        final StudyObject playing = session.getObject(Session.PLAYING);
+
+        playing.setTime(input1TimeSpent);
+        playing.setTime(input2TimeSpent);
+
+        final int actualTimeSpent = playing.getTimeSpent();
 
         assertEquals(expectedTimeSpent, actualTimeSpent);
 
@@ -42,8 +50,11 @@ class StudyObjectTest {
 
         final int inputTimeSpent = -120;
 
+        final Session session = new Session();
+        final StudyObject tactics = session.getObject(Session.TACTICS);
+
         try {
-            StudyObject.tactics.setTime(inputTimeSpent);
+            tactics.setTime(inputTimeSpent);
             fail();
         } catch (final NegativeTimeSpentException e) {}
 
@@ -55,11 +66,15 @@ class StudyObjectTest {
         final int input1TimeSpent = 30;
         final int input2TimeSpent = -213;
 
-        StudyObject.analysis.setTime(input1TimeSpent);
+        final Session session = new Session();
+        final StudyObject analysis = session.getObject(Session.ANALYSIS);
+
+        analysis.setTime(input1TimeSpent);
 
         try {
-            StudyObject.tactics.addTime(input2TimeSpent);
+            analysis.addTime(input2TimeSpent);
             fail();
         } catch (final NegativeTimeSpentException e) {}
     }
+
 }

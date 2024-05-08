@@ -1,5 +1,6 @@
 package io.github.sttanyanz.chesstc.controller;
 
+import io.github.sttanyanz.chesstc.model.Session;
 import io.github.sttanyanz.chesstc.model.StudyObject;
 import io.github.sttanyanz.chesstc.model.exceptions.NegativeInputTimeException;
 import io.github.sttanyanz.chesstc.model.exceptions.NegativeTimeSpentException;
@@ -15,11 +16,16 @@ class SetTimeControllerTest {
 
         final int inputTimeSpent = 120;
         final int expectedTimeSpent = inputTimeSpent * 2;
+        
         final SetTimeController inputController = new SetTimeController();
+        
+        final Session session = new Session();
+        final StudyObject playing = session.getObject(Session.PLAYING);
 
-        inputController.spendTime(StudyObject.playing, inputTimeSpent);
-        inputController.spendTime(StudyObject.playing, inputTimeSpent);
-        final int actualTimeSpent = StudyObject.playing.getTimeSpent();
+        inputController.spendTime(playing, inputTimeSpent);
+        inputController.spendTime(playing, inputTimeSpent);
+
+        final int actualTimeSpent = playing.getTimeSpent();
 
         assertEquals(expectedTimeSpent, actualTimeSpent);
 
@@ -30,10 +36,14 @@ class SetTimeControllerTest {
             throws NegativeTimeSpentException {
 
         final int inputTimeSpent = -120;
+        
         final SetTimeController inputController = new SetTimeController();
 
+        final Session session = new Session();
+        final StudyObject theory = session.getObject(Session.THEORY);
+
         try {
-            inputController.spendTime(StudyObject.theory, inputTimeSpent);
+            inputController.spendTime(theory, inputTimeSpent);
             fail();
         } catch (final NegativeInputTimeException e) {}
 
@@ -45,11 +55,16 @@ class SetTimeControllerTest {
 
         final int inputTimeSpent = 120;
         final int expectedTimeSpent = inputTimeSpent;
+        
         final SetTimeController inputController = new SetTimeController();
 
-        inputController.setTime(StudyObject.tactics, inputTimeSpent);
-        inputController.setTime(StudyObject.tactics, inputTimeSpent);
-        final int actualTimeSpent = StudyObject.tactics.getTimeSpent();
+        final Session session = new Session();
+        final StudyObject tactics = session.getObject(Session.TACTICS);
+
+        inputController.setTime(tactics, inputTimeSpent);
+        inputController.setTime(tactics, inputTimeSpent);
+
+        final int actualTimeSpent = tactics.getTimeSpent();
 
         assertEquals(expectedTimeSpent, actualTimeSpent);
 
@@ -60,10 +75,14 @@ class SetTimeControllerTest {
             throws NegativeTimeSpentException {
 
         final int inputTimeSpent = -120;
+        
         final SetTimeController inputController = new SetTimeController();
 
+        final Session session = new Session();
+        final StudyObject theory = session.getObject(Session.THEORY);
+
         try {
-            inputController.setTime(StudyObject.theory, inputTimeSpent);
+            inputController.setTime(theory, inputTimeSpent);
             fail();
         } catch (final NegativeInputTimeException e) {}
 
@@ -75,11 +94,16 @@ class SetTimeControllerTest {
 
         final int inputTimeSpent = 120;
         final int expectedTimeSpent = StudyObject.DEFAULT_TIME;
+        
         final SetTimeController inputController = new SetTimeController();
 
-        inputController.setTime(StudyObject.analysis, inputTimeSpent);
-        inputController.reset();
-        final int actualTimeSpent = StudyObject.analysis.getTimeSpent();
+        final Session session = new Session();
+        final StudyObject analysis = session.getObject(Session.ANALYSIS);
+
+        inputController.setTime(analysis, inputTimeSpent);
+        inputController.reset(session);
+
+        final int actualTimeSpent = analysis.getTimeSpent();
 
         assertEquals(expectedTimeSpent, actualTimeSpent);
 
