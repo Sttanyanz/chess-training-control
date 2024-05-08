@@ -1,7 +1,10 @@
 package io.github.sttanyanz.chesstc.view;
 
+import io.github.sttanyanz.chesstc.controller.SetTimeController;
 import io.github.sttanyanz.chesstc.model.Session;
 import io.github.sttanyanz.chesstc.model.StudyObject;
+import io.github.sttanyanz.chesstc.model.exceptions.NegativeInputTimeException;
+import io.github.sttanyanz.chesstc.model.exceptions.NegativeTimeSpentException;
 import io.github.sttanyanz.chesstc.model.exceptions.StudyObjectIndexOutOfBoundsException;
 
 import java.util.Scanner;
@@ -12,6 +15,8 @@ public class ConsoleView {
     private final static int SET_TIME = 2;
     private final static int RESET = 3;
     private final static int EXIT = 0;
+
+    private final SetTimeController setTimeController = new SetTimeController();
 
     public void show(final Session session){
 
@@ -78,7 +83,7 @@ public class ConsoleView {
 
         showMenuOptions();
 
-        final int action = askAction();
+        final int action = inputInteger();
 
         switch (action) {
             case SPEND_TIME -> spendTime(session);
@@ -94,7 +99,7 @@ public class ConsoleView {
 
     }
 
-    private int askAction() {
+    private int inputInteger() {
         final Scanner in = new Scanner(System.in);
         return in.nextInt();
     }
@@ -112,16 +117,73 @@ public class ConsoleView {
 
     }
 
-    public void spendTime(final Session session) {
+    private void spendTime(final Session session) {
+
+        showStudyAreasOptions();
+
+        final StudyObject studyObject;
+
+        try {
+            studyObject = session.getObject(inputInteger() - 1);
+        } catch (StudyObjectIndexOutOfBoundsException e) {
+            return;
+        }
+
+        final int time = askTime();
+
+        try {
+            setTimeController.spendTime(studyObject, time);
+        } catch (NegativeInputTimeException | NegativeTimeSpentException e) {
+            System.out.println("Input time shouldn't be negative.");
+        }
 
     }
 
-    public void setTime(final Session session) {
+    private int askTime() {
+        System.out.println("Input time");
+        return inputInteger();
+    }
+
+    private void showStudyAreasOptions() {
+        System.out.println("Choose study area:");
+        System.out.println();
+        System.out.println();
+        System.out.println("    1 - Intentional playing");
+        System.out.println("    2 - Analysis");
+        System.out.println("    3 - Tactics training");
+        System.out.println("    4 - Theoretical study");
+        System.out.println("    Input anything else to exit");
+        System.out.println();
+    }
+
+    private void setTime(final Session session) {
+
+        showStudyAreasOptions();
+
+        final StudyObject studyObject;
+
+        try {
+            studyObject = session.getObject(inputInteger() - 1);
+        } catch (StudyObjectIndexOutOfBoundsException e) {
+            return;
+        }
+
+        final int time = askTime();
+
+        try {
+            setTimeController.setTime(studyObject, time);
+        } catch (NegativeInputTimeException | NegativeTimeSpentException e) {
+            System.out.println("Input time shouldn't be negative.");
+        }
 
     }
 
-    public void reset(final Session session) {
-
+    private void reset(final Session session) {
+        try {
+            setTimeController.reset(session);
+        } catch (NegativeTimeSpentException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
