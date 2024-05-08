@@ -9,6 +9,7 @@ import io.github.sttanyanz.chesstc.model.exceptions.NegativeTimeSpentException;
 import io.github.sttanyanz.chesstc.model.exceptions.StudyObjectIndexOutOfBoundsException;
 
 import java.text.DecimalFormat;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ConsoleView {
@@ -138,7 +139,12 @@ public class ConsoleView {
 
     private int inputInteger() {
         final Scanner in = new Scanner(System.in);
-        return in.nextInt();
+        try {
+            return in.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Wrong Input");
+            return inputInteger();
+        }
     }
 
     private void showMenuOptions() {
@@ -177,7 +183,7 @@ public class ConsoleView {
     }
 
     private int askTime() {
-        System.out.println("Input time");
+        System.out.println("Input time (in minutes)");
         return inputInteger();
     }
 
@@ -189,7 +195,7 @@ public class ConsoleView {
         System.out.println("    2 - Analysis");
         System.out.println("    3 - Tactics training");
         System.out.println("    4 - Theoretical study");
-        System.out.println("    Input anything else to exit");
+        System.out.println("    Input any other number to exit");
         System.out.println();
     }
 
